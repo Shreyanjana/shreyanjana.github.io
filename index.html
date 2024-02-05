@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Data Display</title>
+</head>
+<body>
+    <div id="sensorValue">Waiting for data...</div>
+
+    <script>
+        // Fetch data from the server
+        setInterval(() => {
+            fetch('/data')
+                .then(response => response.json())
+                .then(data => {
+                    // Update website content based on received data
+                    document.getElementById('sensorValue').innerText = `Sensor Value: ${data.sensorValue}`;
+                })
+                .catch(error => console.error('Error:', error));
+        }, 1000);  // Fetch data every 1 second
+    </script>
+</body>
+</html>
